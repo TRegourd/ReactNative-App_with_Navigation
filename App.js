@@ -17,9 +17,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {!connected && (
-        <Login connected={connected} setConnected={setConnected} />
-      )}
+      {!connected && <Login setConnected={setConnected} />}
       {connected && (
         <NavigationContainer>
           <Tab.Navigator
@@ -39,9 +37,21 @@ export default function App() {
               tabBarInactiveTintColor: "gray",
             })}
           >
-            <Tab.Screen name="Home" component={Home} />
-            <Tab.Screen name="My Account" component={Account} />
-            <Tab.Screen name="Settings" component={Settings} />
+            <Tab.Screen
+              name="Home"
+              component={Home}
+              options={{ headerShown: false }}
+            />
+            <Tab.Screen
+              name="My Account"
+              component={Account}
+              options={{ headerShown: false }}
+            />
+            <Tab.Screen
+              name="Settings"
+              component={Settings}
+              options={{ headerShown: false }}
+            />
           </Tab.Navigator>
         </NavigationContainer>
       )}
