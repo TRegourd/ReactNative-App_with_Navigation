@@ -1,14 +1,16 @@
 import { Button, Input } from "@rneui/base";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { AuthContext } from "../AuthProvider";
 
-export default function Login({ setConnected }) {
+export default function Login() {
   const [username, setUserName] = useState();
   const [userInput, setUserInput] = useState();
 
+  const { logged, setLogged } = useContext(AuthContext);
+
   const onPressLogin = () => {
-    setUserName(userInput);
-    setConnected(true);
+    setLogged(true);
   };
 
   return (
