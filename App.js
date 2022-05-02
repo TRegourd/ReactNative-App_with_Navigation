@@ -8,6 +8,8 @@ import Login from "./pages/Login";
 import Settings from "./pages/Settings";
 import Account from "./pages/Account";
 
+import Ionicons from "@expo/vector-icons/Ionicons";
+
 export default function App() {
   const [connected, setConnected] = useState(false);
 
@@ -20,7 +22,23 @@ export default function App() {
       )}
       {connected && (
         <NavigationContainer>
-          <Tab.Navigator>
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ color, size }) => {
+                let iconName;
+                if (route.name === "Home") {
+                  iconName = "ios-home";
+                } else if (route.name === "Settings") {
+                  iconName = "ios-list";
+                } else if (route.name === "My Account") {
+                  iconName = "ios-person";
+                }
+                return <Ionicons name={iconName} size={size} color={color} />;
+              },
+              tabBarActiveTintColor: "tomato",
+              tabBarInactiveTintColor: "gray",
+            })}
+          >
             <Tab.Screen name="Home" component={Home} />
             <Tab.Screen name="My Account" component={Account} />
             <Tab.Screen name="Settings" component={Settings} />
